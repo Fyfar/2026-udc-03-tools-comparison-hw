@@ -36,3 +36,10 @@ export function parseTags(input: string): string[] {
 export function wordCount(input: string): number {
   return input.trim().split(/\s+/).filter((word) => word.length > 0).length;
 }
+
+export function capitalizeWords(input: string): string {
+  // Match runs of non-whitespace only, so the original whitespace (count,
+  // position, leading/trailing) is preserved verbatim — never collapsed.
+  // charAt(0) (not word[0]) keeps this total under noUncheckedIndexedAccess.
+  return input.replace(/\S+/g, (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+}
